@@ -9,6 +9,7 @@ import {environment} from '../../environments/environment';
 import {ErrorService} from './error.service';
 import {CommonService} from "./common.service";
 import { Observable } from 'rxjs';
+import { StorageMap } from '@ngx-pwa/local-storage';
 
 export interface AuthResponseData {
   status: boolean;
@@ -42,7 +43,7 @@ export class AuthService {
 
   // @ts-ignore
   userBehaviorSubject = new BehaviorSubject<User>(null);
-  constructor(private commonService: CommonService , private  http: HttpClient, private router: Router, private errorService: ErrorService) { }
+  constructor(private commonService: CommonService , private  http: HttpClient, private router: Router, private errorService: ErrorService, private storage: StorageMap) { }
   fetchStudents() {
     return this.http.get<any>('assets/students.json')
       .toPromise()
@@ -157,8 +158,11 @@ export class AuthService {
                 resData.data.userTypeId,
                 resData.data.userTypeName,
                 resData.data.company);
+                console.log(resData);
             this.userBehaviorSubject.next(user);
             localStorage.setItem('user', JSON.stringify(user));
+            this.storage.set('userObject', user).subscribe(() => {});
+            this.storage.set('company', resData.data.company).subscribe(() => {});
           }
         }));  // this.handleError is a method created by me
   }
