@@ -18,6 +18,16 @@ export interface AuthResponseData {
     userName: string;
     userTypeId: number;
     userTypeName: string;
+    company?: {
+      companyId?: number;
+      companyName?: string;
+      mailingName?: string;
+      address?: string;
+      phone1?: string;
+      phone2?: string;
+      doj?: string;
+      validUpto?: string;
+    };
     token: string;
   };
 }
@@ -119,7 +129,7 @@ export class AuthService {
     if (!userData){
       return;
     }
-    const loadedUser = new User(userData.uniqueId, userData.userName, userData._authKey, userData.userTypeId,userData.userTypeName);
+    const loadedUser = new User(userData.uniqueId, userData.userName, userData._authKey, userData.userTypeId,userData.userTypeName,userData.company);
     if (loadedUser.authKey){
       this.userBehaviorSubject.next(loadedUser);
     }
@@ -131,7 +141,7 @@ export class AuthService {
       loginData.userName,
       'not required',
       100,
-      'tutorial');
+      'tutorial', 'no company');
     this.userBehaviorSubject.next(user);
     localStorage.setItem('user', JSON.stringify(user));
   }
@@ -145,7 +155,8 @@ export class AuthService {
                 resData.data.userName,
                 resData.data.token,
                 resData.data.userTypeId,
-                resData.data.userTypeName);
+                resData.data.userTypeName,
+                resData.data.company);
             this.userBehaviorSubject.next(user);
             localStorage.setItem('user', JSON.stringify(user));
           }
