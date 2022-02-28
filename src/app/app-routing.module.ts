@@ -26,6 +26,8 @@ const routes: Routes = [
 
   { path: 'developer', loadChildren: () => import('./pages/developer/developer.module').then(m => m.DeveloperModule) },
 
+  { path: 'addProduct', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule) },
+
   { path: 'SidenavDeveloper', loadChildren: () => import('./sidenavs/sidenav-developer/sidenav-developer.module').then(m => m.SidenavDeveloperModule) },
 
   // { path: 'student', loadChildren: () => import('./pages/student/student.module').then(m => m.StudentModule) },
@@ -42,7 +44,9 @@ const routes: Routes = [
 
   { path: 'Top', loadChildren: () => import('./home/top/top.module').then(m => m.TopModule) },
 
-  { path: 'Trainer', loadChildren: () => import('./home/trainer/trainer.module').then(m => m.TrainerModule) }
+  { path: 'Trainer', loadChildren: () => import('./home/trainer/trainer.module').then(m => m.TrainerModule) },
+
+  { path: 'product', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule) }
 ];
 
 
