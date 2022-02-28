@@ -14,6 +14,9 @@ import { StorageMap } from '@ngx-pwa/local-storage';
 })
 export class OwnerComponent implements OnInit {
   userObject: any;
+  imageSrc: string | ArrayBuffer | null ="";
+  file: File | undefined;
+  defaultPicture: string = "assets/img/users/2.jpg";
   constructor(private authService: AuthService, private storage: StorageMap) { }
 
   ngOnInit(): void {
@@ -25,6 +28,20 @@ export class OwnerComponent implements OnInit {
     });
 
 
+  }
+  onChange(event: any){
+    this.file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e => this.imageSrc = reader.result);
+    // @ts-ignore
+    reader.readAsDataURL(this.file);
+    this.authService.upload(this.file).subscribe((response) => {
+        console.log(response);
+        if (response.success === 100){
+        }
+      }
+    );
+    event.srcElement.value = null;
   }
 
 }

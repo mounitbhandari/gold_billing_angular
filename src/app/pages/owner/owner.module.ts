@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OwnerRoutingModule } from './owner-routing.module';
 import { OwnerComponent } from './owner.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { OwnerComponent } from './owner.component';
   ],
   imports: [
     CommonModule,
-    OwnerRoutingModule
+    OwnerRoutingModule,
+    MatMenuModule
   ]
 })
 export class OwnerModule { }
