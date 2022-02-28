@@ -162,7 +162,6 @@ export class AuthService {
             this.userBehaviorSubject.next(user);
             localStorage.setItem('user', JSON.stringify(user));
             this.storage.set('userObject', user).subscribe(() => {});
-            this.storage.set('company', resData.data.company).subscribe(() => {});
           }
         }));  // this.handleError is a method created by me
   }
