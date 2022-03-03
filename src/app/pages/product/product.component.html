@@ -1,16 +1,72 @@
-<div class="d-flex">
+<div class="d-flex text-dark">
   <div class="col-6">
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 25rem;">
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
+        <h3 class="card-title">Product Entry</h3>
         <form [formGroup]="productFormGroup">
-          <input formControlName="companyId" placeholder="select company" type="text">
-          <input formControlName="productName"  placeholder="select product name" type="text">
-          <input formControlName="description"  placeholder="add description" type="text">
+          <div class="container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+            <mat-form-field>
+              <mat-label>Company name</mat-label>
+              <input matInput placeholder="Company Name" formControlName="companyId">
+            </mat-form-field>
+
+            <mat-form-field>
+              <!-- <mat-placeholder>Product Name</mat-placeholder> -->
+              <mat-label>Product name</mat-label>
+              <input placeholder="Product Name" matInput formControlName="productName">
+            </mat-form-field>
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+              <!-- <mat-form-field>
+                <mat-label>Price Code</mat-label>
+                <mat-select  formControlName="price_code_id">
+                  <mat-option *ngFor="let priceCode of priceCodes" [value]="priceCode.id">
+                    {{priceCode.price_code_name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field> -->
+                <!-- <mat-label>Product Category</mat-label>
+                <mat-select formControlName="product_category_id">
+                  <mat-option *ngFor="let productCategory of productCategories" [value]="productCategory.id">
+                    {{productCategory.category_name}}
+                  </mat-option>
+                </mat-select> -->
+              <!-- </mat-form-field> -->
+            </div>
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+
+              <mat-form-field>
+                <!-- <mat-placeholder>Description</mat-placeholder> -->
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="add Description" formControlName="description" class="text-right">
+              </mat-form-field>
+            </div>
+
+          </div>
         </form>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="mt-2">
+          <a href="#" class="btn btn-primary">Save</a>
+        </div>
+
       </div>
     </div>
   </div>
   <div class="col-6">right</div>
 </div>
+
+
+<!-- <div class="d-flex">
+  <div>
+    <label for="" class="text-dark">Company Name</label>
+    <input formControlName="companyId" placeholder="select company" type="text">
+  </div>
+  <div>
+    <label for="" class="text-dark">Product Name</label>
+    <input class="ml-3" formControlName="productName"  placeholder="select product name" type="text">
+  </div>
+
+</div>
+<div class="d-flex mt-2">
+  <label for="" class="text-dark">Company Name</label>
+  <input formControlName="description"  placeholder="add description" type="text">
+</div> -->

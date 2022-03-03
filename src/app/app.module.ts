@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { MAT_DATE_LOCALE} from "@angular/material/core";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
         BrowserAnimationsModule,
         MatSidenavModule,
         HttpClientModule,
+        MatFormFieldModule,
 
         SidenavModule,
         HeaderModule,
