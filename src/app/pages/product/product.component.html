@@ -3,45 +3,18 @@
     <div class="card" style="width: 25rem;">
       <div class="card-body">
         <h3 class="card-title">Product Entry</h3>
-        <form [formGroup]="productFormGroup">
+
+
+        <form [formGroup] = productFormGroup>
           <div class="container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
             <mat-form-field>
-              <mat-label>Company name</mat-label>
-              <input matInput placeholder="Company Name" formControlName="companyId">
+              <input matInput placeholder="Enter Product" formControlName="productName">
+              <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="10px" fxLayoutGap.xs="0" *ngIf="!productFormGroup.controls['productName'].valid && productFormGroup.controls['productName'].touched">
+                <mat-error *ngIf="productFormGroup.controls['productName'].hasError('required')">This field is Required</mat-error>
+                <mat-error *ngIf="productFormGroup.controls['productName'].hasError('minlength')">Minimum length of Product is {{productFormGroup.controls['productName'].getError('minlength').requiredLength}}</mat-error>
+                <mat-error *ngIf="productFormGroup.controls['productName'].hasError('maxlength')">Maximum length of name is {{productFormGroup.controls['productName'].getError('maxlength').requiredLength}}</mat-error>
+              </div>
             </mat-form-field>
-
-            <mat-form-field>
-              <!-- <mat-placeholder>Product Name</mat-placeholder> -->
-              <mat-label>Product name</mat-label>
-              <input placeholder="Product Name" matInput formControlName="productName">
-            </mat-form-field>
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
-              <!-- <mat-form-field>
-                <mat-label>Price Code</mat-label>
-                <mat-select  formControlName="price_code_id">
-                  <mat-option *ngFor="let priceCode of priceCodes" [value]="priceCode.id">
-                    {{priceCode.price_code_name}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field> -->
-                <!-- <mat-label>Product Category</mat-label>
-                <mat-select formControlName="product_category_id">
-                  <mat-option *ngFor="let productCategory of productCategories" [value]="productCategory.id">
-                    {{productCategory.category_name}}
-                  </mat-option>
-                </mat-select> -->
-              <!-- </mat-form-field> -->
-            </div>
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
-
-              <mat-form-field>
-                <!-- <mat-placeholder>Description</mat-placeholder> -->
-                <mat-label>Description</mat-label>
-                <input matInput placeholder="add Description" formControlName="description" class="text-right">
-              </mat-form-field>
-            </div>
-
           </div>
         </form>
         <div class="mt-2">
