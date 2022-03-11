@@ -5,6 +5,10 @@
         <h3 class="card-title text-white">Product Entry</h3>
         <form [formGroup] = productFormGroup>
           <div class="container">
+            
+
+            
+
             <mat-form-field class="col-12" appearance = "fill">
               <input matInput class="text-white" placeholder="Enter Product" formControlName="productName">
               <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="10px" fxLayoutGap.xs="0" *ngIf="!productFormGroup.controls['productName'].valid && productFormGroup.controls['productName'].touched">
@@ -13,10 +17,30 @@
                 <mat-error *ngIf="productFormGroup.controls['productName'].hasError('maxlength')">Maximum length of name is {{productFormGroup.controls['productName'].getError('maxlength').requiredLength}}</mat-error>
               </div>
             </mat-form-field>
+            <mat-form-field class="col-12" appearance = "fill">
+              <input matInput class="text-white" placeholder="Add description" formControlName="description">
+              <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="10px" fxLayoutGap.xs="0" *ngIf="!productFormGroup.controls['description'].valid && productFormGroup.controls['description'].touched">
+                <!-- <mat-error *ngIf="productFormGroup.controls['description'].hasError('required')">This field is Required</mat-error> -->
+                <!-- <mat-error *ngIf="productFormGroup.controls['description'].hasError('minlength')">Minimum length of Product is {{productFormGroup.controls['description'].getError('minlength').requiredLength}}</mat-error> -->
+                <mat-error *ngIf="productFormGroup.controls['description'].hasError('maxlength')">Maximum length of name is {{productFormGroup.controls['description'].getError('maxlength').requiredLength}}</mat-error>
+              </div>
+            </mat-form-field>
           </div>
         </form>
       </div>
     </div>
   </div>
   <div class="col-6">right</div>
+</div>
+
+
+
+<div class="d-flex" *ngIf="!isProduction">
+  <div class="col-4" style="border: 2px solid white;">
+    <pre>productFormGroup= {{productFormGroup.value | json}}</pre>
+  </div>
+  <div class="col-4" style="border: 2px solid white;">
+    <pre>userObject= {{userObject | json}}</pre>
+  </div>
+  <div class="col-4" style="border: 2px solid white;">right</div>
 </div>
