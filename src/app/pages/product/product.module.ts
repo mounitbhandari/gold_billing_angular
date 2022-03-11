@@ -5,6 +5,8 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -18,7 +20,10 @@ import {MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+
   ]
 })
 export class ProductModule { }
