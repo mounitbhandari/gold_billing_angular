@@ -49,6 +49,10 @@ export class ProductComponent implements OnInit {
       this.productFormGroup.patchValue({companyId: this.userObject.company.companyId});
     });
   }
+
+  showSuccess(successMessage: string) {
+    this.messageService.add({severity:'success', summary: 'Success', detail: successMessage});
+  }
   showError(message: string) {
     this.messageService.add({severity:'error', summary: 'Success', detail: message});
   }
@@ -63,7 +67,9 @@ export class ProductComponent implements OnInit {
         //this.myArray.splice(index, 1);
 
         this.productService.saveProducts(this.productFormGroup.value).subscribe(response => {
-
+          if (response.status === true){
+            this.showSuccess("Record added successfully");
+          }
 
         },error=>{
           this.showErrorMessage = true;

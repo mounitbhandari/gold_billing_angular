@@ -10,6 +10,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { MatOptionModule } from '@angular/material/core';
 import {DialogModule} from "primeng/dialog";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ToastModule} from "primeng/toast";
 
 
 
@@ -28,7 +29,8 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
     MatButtonModule,
     MatOptionModule,
     DialogModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ToastModule,
   ]
 })
 export class ProductModule { }

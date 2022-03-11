@@ -16,7 +16,7 @@ export class ProductService {
   constructor(private  http: HttpClient, private errorService: ErrorService, private commonService: CommonService) { }
 
   saveProducts(formdata: any){
-    return this.http.post(this.commonService.getAPI() + "/products", formdata)
+    return this.http.post<{status: boolean, message: string, data: any}>(this.commonService.getAPI() + "/products", formdata)
     .pipe(catchError(this.errorService.serverError), tap(response => {
       // console.log(response);
     }));
