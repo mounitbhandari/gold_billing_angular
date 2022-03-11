@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {ProductResolver} from "./resolver/product.resolver";
 
 
 
@@ -44,7 +45,10 @@ const routes: Routes = [
 
   { path: 'Trainer', loadChildren: () => import('./home/trainer/trainer.module').then(m => m.TrainerModule) },
 
-  { path: 'product', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule) }
+  { path: 'product',
+    loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule),
+    resolve: {productResolver: ProductResolver},
+  }
 ];
 
 

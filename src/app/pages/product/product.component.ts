@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 
 import {ConfirmationService, MessageService, PrimeNGConfig} from "primeng/api";
 import {DatePipe} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
 
 interface Alert {
   type: string;
@@ -35,12 +36,20 @@ export class ProductComponent implements OnInit {
     productName: new FormControl(null, [Validators.required, Validators.maxLength(10), Validators.minLength(4)]),
     description: new FormControl(null, [Validators.maxLength(100)]),
   });
+  productList: any;
 
   constructor( private storage: StorageMap
                , private productService: ProductService
                , private confirmationService: ConfirmationService
                , private primengConfig: PrimeNGConfig
-               ,private messageService: MessageService) { }
+               , private messageService: MessageService
+               , private route: ActivatedRoute
+              ) {
+    this.route.data.subscribe((response: any) => {
+      this.productList = response.productResolver.products.data;
+    });
+
+  }
 
   ngOnInit(): void {
 

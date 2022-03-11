@@ -11,6 +11,7 @@ import {CommonService} from "./common.service";
 export class ProductService {
 
   private BASE_API_URL = environment.BASE_API_URL;
+  private productList: any;
 
 
   constructor(private  http: HttpClient, private errorService: ErrorService, private commonService: CommonService) { }
@@ -21,6 +22,12 @@ export class ProductService {
       // console.log(response);
     }));
 
+  }
+  fetchAllProducts(){
+    return this.http.get<any>(this.commonService.getAPI() + '/products')
+      .pipe(catchError(this.errorService.serverError), tap(((response: {status: boolean, message: string, data: any}) => {
+        this.productList=response.data;
+      })));
   }
 }
 
