@@ -5,9 +5,9 @@
         <h3 class="card-title text-white">Product Entry</h3>
         <form [formGroup] = productFormGroup>
           <div class="container">
-            
 
-            
+
+
 
             <mat-form-field class="col-12" appearance = "fill">
               <input matInput class="text-white" placeholder="Enter Product" formControlName="productName">
@@ -25,6 +25,18 @@
                 <mat-error *ngIf="productFormGroup.controls['description'].hasError('maxlength')">Maximum length of name is {{productFormGroup.controls['description'].getError('maxlength').requiredLength}}</mat-error>
               </div>
             </mat-form-field>
+            <div class="example-button-row">
+              <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle" [transitionOptions]="'0.8ms'">
+                <ng-template pTemplate="header">
+                  <h3>Header Content</h3>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                  <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+                  <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+                </ng-template>
+              </p-confirmDialog>
+              <button mat-button color="accent" (click)="saveProduct()" >Save</button>
+            </div>
           </div>
         </form>
       </div>

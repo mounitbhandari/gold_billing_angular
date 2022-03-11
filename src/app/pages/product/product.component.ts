@@ -3,20 +3,28 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
-// import Swal from 'sweetalert2';
 
+import {ConfirmationService, MessageService, PrimeNGConfig} from "primeng/api";
+import {DatePipe} from "@angular/common";
 
+interface Alert {
+  type: string;
+  message: string;
+}
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
+  providers: [ConfirmationService, MessageService,DatePipe]
 })
 export class ProductComponent implements OnInit {
 
   userObject: any;
-
+  errorMessage: any;
+  showErrorMessage: boolean = false;
   isProduction = environment.production;
+  msgs: { severity: string; summary: string; detail: string }[] = [];
 
   private validatorError: any;
 
@@ -28,7 +36,11 @@ export class ProductComponent implements OnInit {
     description: new FormControl(null, [Validators.maxLength(100)]),
   });
 
-  constructor( private storage: StorageMap, private productService: ProductService) { }
+  constructor( private storage: StorageMap
+               , private productService: ProductService
+               , private confirmationService: ConfirmationService
+               , private primengConfig: PrimeNGConfig
+               ,private messageService: MessageService) { }
 
   ngOnInit(): void {
 
@@ -37,47 +49,40 @@ export class ProductComponent implements OnInit {
       this.productFormGroup.patchValue({companyId: this.userObject.company.companyId});
     });
   }
+  showError(message: string) {
+    this.messageService.add({severity:'error', summary: 'Success', detail: message});
+  }
 
-  // saveManualResult(){
+  saveProduct(){
+    this.confirmationService.confirm({
+      message: 'Do you want to save the product?',
+      header: 'Save Product Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        //const index: number = this.myArray.indexOf(value);
+        //this.myArray.splice(index, 1);
 
-  //   this.validatorError = null;
-  //   Swal.fire({
-  //     title: 'Confirmation',
-  //     text: 'Do you sure to save this result?',
-  //     icon: 'info',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'Yes, save It!'
-  //   }).then((result: any) => {
-  //     if (result.isConfirmed){
-  //       this.productService.saveProducts(this.productFormGroup.value).subscribe(response => {
-  //         if (response.success === 1){
-  //           // @ts-ignore
-  //           Swal.fire({
-  //             position: 'top-end',
-  //             icon: 'success',
-  //             title: 'Result saved',
-  //             showConfirmButton: false,
-  //             timer: 1000
-  //           });
-  //           this.productFormGroup.reset();
-  //         }else{
-  //           this.validatorError = response.error;
-  //           Swal.fire({
-  //             position: 'top-end',
-  //             icon: 'error',
-  //             title: 'Validation error',
-  //             showConfirmButton: false,
-  //             timer: 3000
-  //           });
-  //         }
-  //       }, (error) => {
-  //         // when error occured
-  //         console.log('data saving error', error);
-  //       });
-  //     }
-  //   });
-  // }
+        this.productService.saveProducts(this.productFormGroup.value).subscribe(response => {
+
+
+        },error=>{
+          this.showErrorMessage = true;
+          this.errorMessage = error.message;
+          const alerts: Alert[] = [{
+            type: 'success',
+            message: this.errorMessage,
+          }]
+          setTimeout(()=>{
+            this.showErrorMessage = false;
+          }, 20000);
+          this.showError(error.statusText);
+        })
+
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    });
+  }
 
 }

@@ -8,6 +8,8 @@ import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { MatOptionModule } from '@angular/material/core';
+import {DialogModule} from "primeng/dialog";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 
 
@@ -25,7 +27,8 @@ import { MatOptionModule } from '@angular/material/core';
     FormsModule,
     MatButtonModule,
     MatOptionModule,
-
+    DialogModule,
+    ConfirmDialogModule
   ]
 })
 export class ProductModule { }
