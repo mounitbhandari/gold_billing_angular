@@ -63,7 +63,7 @@ export class ProductComponent implements OnInit {
     this.messageService.add({severity:'success', summary: 'Success', detail: successMessage});
   }
   showError(message: string) {
-    this.messageService.add({severity:'error', summary: 'Success', detail: message});
+    this.messageService.add({severity:'error', summary: 'Error', detail: message});
   }
 
   saveProduct(){

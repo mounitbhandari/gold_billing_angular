@@ -35,6 +35,13 @@ export class ErrorService {
       }
       return  throwError({status: err.status , message: 'Duplicate entry', statusText: err.statusText});
     }
+    if (err.status === 409){
+      if (err.error.message){
+        return  throwError({status: err.status , message: 'Duplicate entry', statusText: 'Duplicate entry'});
+        //return  throwError({status: err.status , message: err.error.message, statusText: err.statusText});
+      }
+      return  throwError({status: err.status , message: 'Duplicate entry', statusText: err.statusText});
+    }
     if (err.status === 422){
       return  throwError({status: err.status , message: err.error.message, statusText: err.statusText});
     }
