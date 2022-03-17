@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
   showErrorMessage: boolean = false;
   isProduction = environment.production;
   msgs: { severity: string; summary: string; detail: string }[] = [];
+  products: any[] = [];
 
   private validatorError: any;
 
@@ -57,6 +58,13 @@ export class ProductComponent implements OnInit {
       this.userObject = userObject;
       this.productFormGroup.patchValue({companyId: this.userObject.company.companyId});
     });
+
+    this.productService.fetchAllProducts().subscribe(result=>{
+      //console.log('result',result);
+      this.products = result.data;
+      console.log('result',this.products);
+    });
+    
   }
 
   showSuccess(successMessage: string) {

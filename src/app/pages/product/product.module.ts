@@ -11,7 +11,7 @@ import { MatOptionModule } from '@angular/material/core';
 import {DialogModule} from "primeng/dialog";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
-
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -31,6 +31,7 @@ import {ToastModule} from "primeng/toast";
     DialogModule,
     ConfirmDialogModule,
     ToastModule,
+    TableModule,
   ]
 })
 export class ProductModule { }

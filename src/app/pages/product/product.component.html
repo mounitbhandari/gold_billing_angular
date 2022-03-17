@@ -53,6 +53,27 @@
   <div class="col-6">
     <div class="card">
       <h5>Product List</h5>
+      <p-table [value]="products">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>productId</th>
+                <th>companyId</th>
+                <th>productName</th>
+                <th>description</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-products>
+            <tr>
+                <td>{{products.productId}}</td>
+                <td>{{products.companyId}}</td>
+                <td>{{products.productName}}</td>
+                <td>{{products.description}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+      <!-- <pre>
+        {{products | json}}
+      </pre> -->
     </div>
   </div>
 </div>
