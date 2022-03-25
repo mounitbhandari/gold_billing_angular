@@ -53,7 +53,11 @@
   <div class="col-6">
     <div class="card">
       <h5>Product List</h5>
-      <p-table [value]="products">
+<!--      <p-table [value]="products">-->
+        <p-table #dt [value]="products" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+                 [rows]="4" [showCurrentPageReport]="true" [rowsPerPageOptions]="[4,25,50]"  responsiveLayout="scroll"
+                 [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                 [filterDelay]="0" >
         <ng-template pTemplate="header">
             <tr>
                 <th>productId</th>

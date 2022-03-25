@@ -64,7 +64,7 @@ export class ProductComponent implements OnInit {
       this.products = result.data;
       console.log('result',this.products);
     });
-    
+
   }
 
   showSuccess(successMessage: string) {
@@ -85,6 +85,11 @@ export class ProductComponent implements OnInit {
 
         this.productService.saveProducts(this.productFormGroup.value).subscribe(response => {
           if (response.status === true){
+            // console.log("proucts response", response);
+            //unshift for add item to the first position in list
+            this.products.unshift(response.data);
+            //unshift for add item to the last position in list
+            // this.products.push(response.data);
             this.showSuccess("Record added successfully");
           }
 
