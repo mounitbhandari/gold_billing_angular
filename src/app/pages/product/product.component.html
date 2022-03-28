@@ -7,12 +7,12 @@
 
 
 <div class="d-flex text-dark">
-  <div class="col-6">
-    <div class="card bg-dark col-12" style="width: 25rem;">
-      <div class="card-body">
+  <div class="col-5 " >
+    <div class="card bg-dark col-12" >
+      <div class="card-body" style="width: 25rem;">
         <h3 class="card-title text-white">Product Entry</h3>
-        <form [formGroup] = productFormGroup>
-          <div class="container">
+        <form [formGroup] = productFormGroup style=" background-image: linear-gradient(to right, #b4b2af , #6f6f6f); border-radius: 5px">
+          <div class="container" style="color: black">
 
 
 
@@ -43,38 +43,38 @@
                   <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
                 </ng-template>
               </p-confirmDialog>
-              <button mat-button color="accent" (click)="saveProduct()" >Save</button>
+              <button mat-button color="accent" class="btn-primary" (click)="saveProduct()" >Save</button>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <div class="col-6">
-    <div class="card">
-      <h5>Product List</h5>
+  <div class="col-7">
+    <div class="card" style="background-image: linear-gradient(to right, #a8a78d , #767778);">
+      <h1>Product List</h1>
 <!--      <p-table [value]="products">-->
-        <p-table #dt [value]="products" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
-                 [rows]="4" [showCurrentPageReport]="true" [rowsPerPageOptions]="[4,25,50]"  responsiveLayout="scroll"
+        <p-table #dt class="table-bordered" [value]="products" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+                 [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,25,50]"  responsiveLayout="scroll"
                  [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                 [filterDelay]="0" >
-        <ng-template pTemplate="header">
-            <tr>
-                <th>productId</th>
-                <th>companyId</th>
-                <th>productName</th>
-                <th>description</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-products>
-            <tr>
-                <td>{{products.productId}}</td>
-                <td>{{products.companyId}}</td>
-                <td>{{products.productName}}</td>
-                <td>{{products.description}}</td>
-            </tr>
-        </ng-template>
-    </p-table>
+                 [filterDelay]="0" style="background-image: linear-gradient(to right, #a8a78d , #767778) !important; border-radius: 5px">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Product Id</th>
+                  <th>Company Id</th>
+                  <th>Product Name</th>
+                  <th>Description</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-products>
+              <tr>
+                  <td>{{products.productId}}</td>
+                  <td>{{products.companyId}}</td>
+                  <td>{{products.productName}}</td>
+                  <td>{{products.description}}</td>
+              </tr>
+          </ng-template>
+      </p-table>
       <!-- <pre>
         {{products | json}}
       </pre> -->
