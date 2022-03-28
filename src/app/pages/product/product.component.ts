@@ -74,7 +74,7 @@ export class ProductComponent implements OnInit {
     this.messageService.add({severity:'error', summary: 'Error', detail: message});
   }
 
-  saveProduct(){
+   saveProduct(){
     this.confirmationService.confirm({
       message: 'Do you want to save the product?',
       header: 'Save Product Confirmation',

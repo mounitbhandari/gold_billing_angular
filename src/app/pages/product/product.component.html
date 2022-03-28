@@ -7,11 +7,11 @@
 
 
 <div class="d-flex text-dark">
-  <div class="col-5 " >
-    <div class="card bg-dark col-12" >
-      <div class="card-body" style="width: 25rem;">
+  <div class="col-5">
+    <div class="card col-12"  style="border: 3px solid #555555; border-radius: 7px; background-color: #4b4b49">
+      <div class="card-body" style="width: 95%;">
         <h3 class="card-title text-white">Product Entry</h3>
-        <form [formGroup] = productFormGroup style=" background-image: linear-gradient(to right, #b4b2af , #6f6f6f); border-radius: 5px">
+        <form [formGroup] = productFormGroup style=" background-image: linear-gradient(to right, #b4b2af , #6f6f6f); border-radius: 5px; margin-left: 20px; ">
           <div class="container" style="color: black">
 
 
@@ -43,7 +43,7 @@
                   <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
                 </ng-template>
               </p-confirmDialog>
-              <button mat-button color="accent" class="btn-primary" (click)="saveProduct()" >Save</button>
+              <button mat-button color="accent" class="btn-primary" (click)="saveProduct()" [disabled]="!productFormGroup.valid">Save</button>
             </div>
           </div>
         </form>
@@ -51,7 +51,7 @@
     </div>
   </div>
   <div class="col-7">
-    <div class="card" style="background-image: linear-gradient(to right, #a8a78d , #767778);">
+    <div class="card" style="background-image: linear-gradient(to right, #a8a78d , #767778); border: 5px  solid #6a6a51">
       <h1>Product List</h1>
 <!--      <p-table [value]="products">-->
         <p-table #dt class="table-bordered" [value]="products" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
@@ -60,18 +60,18 @@
                  [filterDelay]="0" style="background-image: linear-gradient(to right, #a8a78d , #767778) !important; border-radius: 5px">
           <ng-template pTemplate="header">
               <tr>
-                  <th>Product Id</th>
-                  <th>Company Id</th>
-                  <th>Product Name</th>
-                  <th>Description</th>
+                  <th style="background-color: #acac98">Product Id</th>
+                  <th style="background-color: #acac98">Company Id</th>
+                  <th style="background-color: #acac98">Product Name</th>
+                  <th style="background-color: #acac98">Description</th>
               </tr>
           </ng-template>
           <ng-template pTemplate="body" let-products>
               <tr>
-                  <td>{{products.productId}}</td>
-                  <td>{{products.companyId}}</td>
-                  <td>{{products.productName}}</td>
-                  <td>{{products.description}}</td>
+                  <td style="background-color: #acac98">{{products.productId}}</td>
+                  <td style="background-color: #acac98">{{products.companyId}}</td>
+                  <td style="background-color: #acac98">{{products.productName}}</td>
+                  <td style="background-color: #acac98">{{products.description}}</td>
               </tr>
           </ng-template>
       </p-table>
